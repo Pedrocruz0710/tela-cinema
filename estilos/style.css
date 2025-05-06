@@ -1,0 +1,122 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html,body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+img{
+    height: 220px;
+    width: 140px;
+    border-radius: 10px;
+}
+
+header{
+    border: 2px dashed rgb(0, 132, 255);
+   background-image: linear-gradient(to right, white, white, rgb(9, 110, 224));
+    
+}
+header > h1{
+    position: relative;
+    left: 20px;
+    text-align: center;
+    right: 250px;
+    padding: 35px 0px 35px 0px;
+    width: 228px;
+    font-family: "Nabla", system-ui;
+    border: 2px dashed rgb(187, 255, 0);
+    font-size: 3.5em;
+    color: rgb(9, 110, 224);
+}
+nav{
+    padding: 5px;
+    border: 2px dashed rgb(0, 255, 0);
+    background-image: linear-gradient(to right, white, white, rgb(9, 110, 224));
+}
+
+nav > a{
+    border: 2px dashed black;
+    margin: 0px 15px;
+    padding: 5px;
+    display: inline-block;
+    color: rgb(9, 110, 224);
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.s1 > h2{
+    font-size: 1.6em;
+    font-family: "Cal Sans", sans-serif;
+    letter-spacing: .2em;
+    padding: 10px;
+    border: 2px dotted black;
+    width: 300px;
+    text-align: center;
+    margin: 55px 0px 15px 0px ;
+}
+ 
+.containers1{
+    display: flex;
+    border: 2px dotted black;
+    width: 95vw;
+    margin: auto;
+    height: 300px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px;
+}
+
+.containers2{
+    display: flex;
+    border: 2px dotted black;
+    width: 75vw;
+    margin: auto;
+    height: 580px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px;
+}
+
+.s2 > h2 {
+    font-size: 1.8em;
+    font-family: "Cal Sans", sans-serif;
+    letter-spacing: .2em;
+    width: 320px;
+    text-align: center;
+    padding: 10px;
+    margin: 45px auto;
+    border: 2px dotted black;
+}
+
+.containers2 > img{
+    height: 360px;
+    width: 225px;
+}
+
+.s3 > h2{
+        font-size: 1.6em;
+        font-family: "Cal Sans", sans-serif;
+        letter-spacing: .2em;
+        padding: 10px;
+        border: 2px dotted black;
+        width: 300px;
+        text-align: center;
+        margin: 15px 0px;
+}
+
+.containers3 {
+    display: flex;
+    border: 2px dotted black;
+    width: 95vw;
+    margin: auto;
+    height: 300px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px;
+}
