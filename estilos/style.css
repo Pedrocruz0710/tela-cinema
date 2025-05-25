@@ -101,7 +101,7 @@ nav > a:hover {
     border-radius: 10px;
     background-color: rgba(0, 0, 146, 0.788);
     text-decoration: underline;
-    
+    color: white;
     transition: .2s;
 }
 
@@ -154,6 +154,11 @@ section.s2{
     align-items: center;
     justify-content: space-around;
     border-radius: 30px;
+}
+
+.ptf > img{
+     height: 360px;
+    width: 225px;
 }
 
 .s2 > h2 {

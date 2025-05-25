@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horários do Cinema</title>
+  <style>
+    :root {
+      --primary-color: rgb(41, 41, 41);
+      --secondary-color: #16213e;
+      --accent-color:rgb(9, 110, 224);
+      --text-color: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: var(--secondary-color);
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      padding: 1rem;
+      background-color: var(--secondary-color);
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 200px;
+    }
+
+    .filter-group label {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .filter-group select, .filter-group input {
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: none;
+      background-color: #333;
+      color: var(--text-color);
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+
+    .movie {
+      background-color: #222;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      flex: 1 1 300px;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .movie:hover {
+      transform: translateY(-5px);
+    }
+
+    .movie h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: var(--accent-color);
+    }
+
+    .movie-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .rating {
+      display: inline-block;
+      padding: 0.2em 0.5em;
+      border-radius: 0.25rem;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    .rating-l {
+      background-color: #4CAF50; /* Verde - Livre */
+    }
+
+    .rating-10 {
+      background-color: #2196F3; /* Azul - 10 anos */
+    }
+
+    .rating-12 {
+      background-color: #FFC107; /* Amarelo - 12 anos */
+    }
+
+    .rating-14 {
+      background-color: #FF9800; /* Laranja - 14 anos */
+    }
+
+    .rating-16 {
+      background-color: #F44336; /* Vermelho - 16 anos */
+    }
+
+    .rating-18 {
+      background-color: #9C27B0; /* Roxo - 18 anos */
+    }
+
+    .duration {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .genre {
+      display: inline-block;
+      background-color: #333;
+      padding: 0.2em 0.5em;
+      border-radius: 0.25rem;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .times {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .time {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.5em 1em;
+      border-radius: 0.25rem;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .time:hover {
+      background-color: #c53048;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .time {
+        font-size: 0.9rem;
+      }
+
+      .filters {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Horários de Hoje - Cinecom</h1>
+  </header>
+
+
+  <div class="container" id="movies-container">
+    
+    <div class="movie" data-genre="acao aventura ficcao" data-rating="12">
+      <h2>Homem-Aranha: Sem Volta para Casa</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">148 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">13:00</div>
+        <div class="time">16:30</div>
+        <div class="time">20:00</div>
+      </div>
+    </div>
+
+   
+    <div class="movie" data-genre="acao aventura comedia" data-rating="16">
+      <h2>Deadpool e Wolverine</h2>
+      <div class="movie-info">
+        <span class="rating rating-16">16 anos</span>
+        <span class="duration">127 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+        <span class="genre">Comédia</span>
+      </div>
+      <div class="times">
+        <div class="time">14:00</div>
+        <div class="time">17:00</div>
+        <div class="time">21:00</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="terror ficcao" data-rating="16">
+      <h2>Alien: Rómulo</h2>
+      <div class="movie-info">
+        <span class="rating rating-16">16 anos</span>
+        <span class="duration">115 min</span>
+      </div>
+      <div>
+        <span class="genre">Terror</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">15:15</div>
+        <div class="time">18:30</div>
+        <div class="time">22:00</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="aventura ficcao" data-rating="12">
+      <h2>Avatar 2</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">192 min</span>
+      </div>
+      <div>
+        <span class="genre">Aventura</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">13:45</div>
+        <div class="time">17:15</div>
+        <div class="time">20:45</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="animacao aventura" data-rating="L">
+      <h2>Branca de Neve e os 7 Anões</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">83 min</span>
+      </div>
+      <div>
+        <span class="genre">Animação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">12:00</div>
+        <div class="time">14:30</div>
+        <div class="time">17:00</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="acao aventura" data-rating="12">
+      <h2>Capitão América: Admirável Mundo</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">142 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">13:00</div>
+        <div class="time">16:00</div>
+        <div class="time">19:00</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="terror" data-rating="18">
+      <h2>O Culto de Chucky</h2>
+      <div class="movie-info">
+        <span class="rating rating-18">18 anos</span>
+        <span class="duration">91 min</span>
+      </div>
+      <div>
+        <span class="genre">Terror</span>
+      </div>
+      <div class="times">
+        <div class="time">15:00</div>
+        <div class="time">18:00</div>
+        <div class="time">21:30</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="drama suspense" data-rating="14">
+      <h2>Conclave</h2>
+      <div class="movie-info">
+        <span class="rating rating-14">14 anos</span>
+        <span class="duration">104 min</span>
+      </div>
+      <div>
+        <span class="genre">Drama</span>
+        <span class="genre">Suspense</span>
+      </div>
+      <div class="times">
+        <div class="time">14:30</div>
+        <div class="time">17:30</div>
+        <div class="time">20:30</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="drama suspense" data-rating="16">
+      <h2>Coringa: Delírio a Dois</h2>
+      <div class="movie-info">
+        <span class="rating rating-16">16 anos</span>
+        <span class="duration">138 min</span>
+      </div>
+      <div>
+        <span class="genre">Drama</span>
+        <span class="genre">Suspense</span>
+      </div>
+      <div class="times">
+        <div class="time">16:00</div>
+        <div class="time">19:00</div>
+        <div class="time">22:00</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="animacao aventura comedia" data-rating="L">
+      <h2>Divertidamente 2</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">96 min</span>
+      </div>
+      <div>
+        <span class="genre">Animação</span>
+        <span class="genre">Aventura</span>
+        <span class="genre">Comédia</span>
+      </div>
+      <div class="times">
+        <div class="time">12:30</div>
+        <div class="time">15:00</div>
+        <div class="time">17:30</div>
+      </div>
+    </div>
+
+   
+    <div class="movie" data-genre="terror" data-rating="14">
+      <h2>Five Nights at Freddy's</h2>
+      <div class="movie-info">
+        <span class="rating rating-14">14 anos</span>
+        <span class="duration">110 min</span>
+      </div>
+      <div>
+        <span class="genre">Terror</span>
+      </div>
+      <div class="times">
+        <div class="time">13:00</div>
+        <div class="time">16:00</div>
+        <div class="time">20:30</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="acao aventura ficcao" data-rating="12">
+      <h2>Guardiões da Galáxia Vol. 3</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">150 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">14:00</div>
+        <div class="time">17:00</div>
+        <div class="time">21:00</div>
+      </div>
+    </div>
+
+   
+    <div class="movie" data-genre="terror" data-rating="18">
+      <h2>O Macaco</h2>
+      <div class="movie-info">
+        <span class="rating rating-18">18 anos</span>
+        <span class="duration">88 min</span>
+      </div>
+      <div>
+        <span class="genre">Terror</span>
+      </div>
+      <div class="times">
+        <div class="time">15:30</div>
+        <div class="time">18:00</div>
+        <div class="time">20:30</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="acao aventura" data-rating="12">
+      <h2>O Espetacular Homem-Aranha 2</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">142 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">13:30</div>
+        <div class="time">16:30</div>
+        <div class="time">19:30</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="ficcao aventura" data-rating="10">
+      <h2>Mikey 17</h2>
+      <div class="movie-info">
+        <span class="rating rating-10">10 anos</span>
+        <span class="duration">105 min</span>
+      </div>
+      <div>
+        <span class="genre">Ficção Científica</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">14:15</div>
+        <div class="time">17:15</div>
+        <div class="time">20:15</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="aventura animacao" data-rating="L">
+      <h2>Minecraft: O Filme</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">102 min</span>
+      </div>
+      <div>
+        <span class="genre">Aventura</span>
+        <span class="genre">Animação</span>
+      </div>
+      <div class="times">
+        <div class="time">12:45</div>
+        <div class="time">15:45</div>
+        <div class="time">18:45</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="animacao aventura" data-rating="L">
+      <h2>Moana 2</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">95 min</span>
+      </div>
+      <div>
+        <span class="genre">Animação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">13:10</div>
+        <div class="time">16:10</div>
+        <div class="time">19:10</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="animacao aventura" data-rating="L">
+      <h2>Mufasa</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">98 min</span>
+      </div>
+      <div>
+        <span class="genre">Animação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">14:30</div>
+        <div class="time">17:30</div>
+        <div class="time">20:30</div>
+      </div>
+    </div>
+
+    
+    <div class="movie" data-genre="acao aventura animacao" data-rating="10">
+      <h2>Sonic 3</h2>
+      <div class="movie-info">
+        <span class="rating rating-10">10 anos</span>
+        <span class="duration">112 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+        <span class="genre">Animação</span>
+      </div>
+      <div class="times">
+        <div class="time">13:20</div>
+        <div class="time">16:20</div>
+        <div class="time">19:20</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="terror" data-rating="18">
+      <h2>Terrifier 3</h2>
+      <div class="movie-info">
+        <span class="rating rating-18">18 anos</span>
+        <span class="duration">89 min</span>
+      </div>
+      <div>
+        <span class="genre">Terror</span>
+      </div>
+      <div class="times">
+        <div class="time">15:50</div>
+        <div class="time">18:50</div>
+        <div class="time">21:50</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="acao aventura" data-rating="14">
+      <h2>Thunderbolts</h2>
+      <div class="movie-info">
+        <span class="rating rating-14">14 anos</span>
+        <span class="duration">125 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">14:00</div>
+        <div class="time">17:00</div>
+        <div class="time">20:00</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="acao aventura" data-rating="12">
+      <h2>Thor: Amor e Trovão</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">119 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">13:40</div>
+        <div class="time">16:40</div>
+        <div class="time">19:40</div>
+      </div>
+    </div>
+
+  
+    <div class="movie" data-genre="animacao aventura" data-rating="L">
+      <h2>Wish</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">92 min</span>
+      </div>
+      <div>
+        <span class="genre">Animação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">12:15</div>
+        <div class="time">15:15</div>
+        <div class="time">18:15</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="acao ficcao" data-rating="12">
+      <h2>Godzilla</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">123 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">14:30</div>
+        <div class="time">17:30</div>
+        <div class="time">20:30</div>
+      </div>
+    </div>
+
+
+    <div class="movie" data-genre="terror" data-rating="16">
+      <h2>Premonição</h2>
+      <div class="movie-info">
+        <span class="rating rating-16">16 anos</span>
+        <span class="duration">101 min</span>
+      </div>
+      <div>
+        <span class="genre">Terror</span>
+      </div>
+      <div class="times">
+        <div class="time">13:25</div>
+        <div class="time">16:25</div>
+        <div class="time">19:25</div>
+      </div>
+    </div>
+    
+
+ 
+
+  
+    <div class="movie" data-genre="fantasia comedia" data-rating="L">
+      <h2>A Máscara</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">101 min</span>
+      </div>
+      <div>
+        <span class="genre">Fantasia</span>
+        <span class="genre">Comédia</span>
+      </div>
+      <div class="times">
+        <div class="time">14:15</div>
+        <div class="time">17:45</div>
+        <div class="time">20:15</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="acao aventura ficcao" data-rating="12">
+      <h2>Guardiões da Galáxia</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">121 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">15:00</div>
+        <div class="time">18:30</div>
+        <div class="time">21:45</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="ficcao aventura" data-rating="12">
+      <h2>Star Wars: Os Últimos Jedi</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">152 min</span>
+      </div>
+      <div>
+        <span class="genre">Ficção Científica</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">13:30</div>
+        <div class="time">17:00</div>
+        <div class="time">20:30</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="fantasia aventura" data-rating="L">
+      <h2>Alice Através do Espelho</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">113 min</span>
+      </div>
+      <div>
+        <span class="genre">Fantasia</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">12:45</div>
+        <div class="time">15:30</div>
+        <div class="time">18:15</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="acao drama" data-rating="12">
+      <h2>Top Gun: Maverick</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">130 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Drama</span>
+      </div>
+      <div class="times">
+        <div class="time">14:00</div>
+        <div class="time">17:15</div>
+        <div class="time">20:45</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="acao ficcao" data-rating="12">
+      <h2>Homem de Ferro 3</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">130 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">13:15</div>
+        <div class="time">16:30</div>
+        <div class="time">19:45</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="acao aventura ficcao" data-rating="12">
+      <h2>Vingadores: A Era de Ultron</h2>
+      <div class="movie-info">
+        <span class="rating rating-12">12 anos</span>
+        <span class="duration">141 min</span>
+      </div>
+      <div>
+        <span class="genre">Ação</span>
+        <span class="genre">Aventura</span>
+        <span class="genre">Ficção Científica</span>
+      </div>
+      <div class="times">
+        <div class="time">14:30</div>
+        <div class="time">18:00</div>
+        <div class="time">21:30</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="animacao aventura" data-rating="L">
+      <h2>Lilo & Stitch</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">85 min</span>
+      </div>
+      <div>
+        <span class="genre">Animação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">12:00</div>
+        <div class="time">14:30</div>
+        <div class="time">17:00</div>
+      </div>
+    </div>
+
+    <div class="movie" data-genre="animacao aventura" data-rating="L">
+      <h2>Algum lugar Especial</h2>
+      <div class="movie-info">
+        <span class="rating rating-l">Livre</span>
+        <span class="duration">106 min</span>
+      </div>
+      <div>
+        <span class="genre">Animação</span>
+        <span class="genre">Aventura</span>
+      </div>
+      <div class="times">
+        <div class="time">14:00</div>
+        <div class="time">18:30</div>
+        <div class="time">21:00</div>
+      </div>
+    </div>
+ 
+ 
+</body>
+</html>

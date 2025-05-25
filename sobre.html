@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre - CineCom</title>
+  <style>
+    :root {
+      --primary-color: rgb(41, 41, 41);
+      --secondary-color: #16213e;
+      --accent-color:   rgb(9, 110, 224);
+      --text-color: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: var(--secondary-color);
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: var(--accent-color);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1 1 60%;
+      min-width: 300px;
+    }
+
+    .about-image {
+      flex: 1 1 35%;
+      min-width: 300px;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    h2 {
+      color: var(--accent-color);
+      font-size: 1.8rem;
+      margin-top: 0;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background-color: var(--secondary-color);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      flex: 1 1 30%;
+      min-width: 250px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+      color: var(--accent-color);
+      margin-top: 0;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+
+
+    .contact {
+      background-color: var(--secondary-color);
+      padding: 3rem;
+      border-radius: 0.5rem;
+      margin: 3rem 0;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--secondary-color);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+      }
+      
+      .feature-card {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Sobre o CineCom</h1>
+      <p>A melhor experiência cinematográfica da sua vida</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="about-section">
+      <div class="about-text">
+        <h2>Nossa História</h2>
+        <p>Fundado em 2005, o CineCom começou como um pequeno cinema de bairro com apenas duas salas. Hoje, somos uma rede com mais de 30 complexos em todo o país, sempre mantendo nosso compromisso com a qualidade e a paixão pelo cinema.</p>
+        <p>Nosso nome, CineCom, representa nossa missão: comunicar emoções através da sétima arte. Acreditamos que o cinema vai além de entretenimento - é uma forma de conectar pessoas e contar histórias que inspiram.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Interior do cinema CineCom">
+      </div>
+    </section>
+
+    <section>
+      <h2>O Que Nos Diferencia</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🎬</div>
+          <h3>Tecnologia de Ponta</h3>
+          <p>Salas equipadas com projetores 4K laser, som Dolby Atmos e assentos com vibração sincronizada para imersão total.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🍿</div>
+          <h3>Conforto Premium</h3>
+          <p>Poltronas reclináveis com amplo espaço, controle de temperatura individual e serviço de food delivery para sua poltrona.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎭</div>
+          <h3>Variedade Cultural</h3>
+          <p>Além dos blockbusters, exibimos filmes independentes, mostras internacionais e sessões especiais com debates.</p>
+        </div>
+      </div>
+    </section>
+
+  
+
+    <section class="contact">
+      <h2>Entre em Contato</h2>
+      <p>Tem dúvidas, sugestões ou quer saber mais sobre nossas sessões especiais?</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-icon">📧</span>
+          <span>pedro07102006@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <span>(19) 99429-6627</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <span>Av. Cinematográfica, 123 - Americana/SP</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2023 CineCom - Todos os direitos reservados</p>
+      <p>Siga-nos nas redes sociais: @cinecomoficial</p>
+    </div>
+  </footer>
+</body>
+</html>
